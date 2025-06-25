@@ -1,0 +1,50 @@
+{
+  "name": "@hacxy/utils",
+  "type": "module",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "description": "",
+  "author": {
+    "name": "hacxy",
+    "email": "hacxy.js@outlook.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ts",
+    "typescript utils"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rolldown -c ./rolldown.prod.js",
+    "dev": "rolldown -c ./rolldown.dev.js -w",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepare": "simple-git-hooks",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:staged": "eslint --fix"
+  },
+  "devDependencies": {
+    "@hacxy/eslint-config": "^0.1.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "eslint": "^9.29.0",
+    "lint-staged": "^15.2.11",
+    "rolldown": "1.0.0-beta.19",
+    "rolldown-plugin-dts": "^0.13.12",
+    "rollup-plugin-delete": "^3.0.1",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.8.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "node scripts/commit-msg.js"
+  },
+  "lint-staged": {
+    "*": [
+      "pnpm run lint:staged"
+    ]
+  }
+}
