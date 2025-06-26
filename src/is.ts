@@ -67,3 +67,17 @@ export function isUndefined(value: unknown): value is undefined {
 export function isNil(value: unknown) {
   return isUndefined(value) || isNull(value);
 }
+
+export function isNumber(value: unknown): value is number {
+  return typeof value === 'number' && !Number.isNaN(value);
+}
+
+export function isPlainObject<Value = unknown>(value: unknown): value is Record<PropertyKey, Value> {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+
+  const prototype = Object.getPrototypeOf(value);
+
+  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value) && !(Symbol.iterator in value);
+}
