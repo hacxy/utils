@@ -18,18 +18,18 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rolldown -c ./rolldown.prod.js",
     "dev": "rolldown -c ./rolldown.dev.js -w",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "prepare": "simple-git-hooks",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:staged": "eslint --fix"
+    "lint:staged": "eslint --fix",
+    "release": "bump",
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
+    "@hacxy/bump": "0.0.1-beta.1",
     "@hacxy/eslint-config": "^0.1.0",
-    "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.29.0",
     "lint-staged": "^15.2.11",
     "rolldown": "1.0.0-beta.19",
