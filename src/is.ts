@@ -1,3 +1,5 @@
+import type { Finite } from './types';
+
 export function isNull(value: unknown): value is null {
   return value === null;
 }
@@ -81,3 +83,10 @@ export function isPlainObject<Value = unknown>(value: unknown): value is Record<
 
   return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value) && !(Symbol.iterator in value);
 }
+
+/**
+ * 用于判断传入的值是否为有限数——也就是说，它检查给定的值是否为数字，并且该数字既不是无穷大 Infinity ，也不是无穷小 Infinity ，更不是NaN
+ * 另外这是一个作为类型守卫正确工作的 `Number.isFinite()` 的替代方案
+ */
+export const isFinite = Number.isFinite as <T extends number>(value: T) => value is Finite<T>;
+
