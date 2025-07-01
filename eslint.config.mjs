@@ -4,6 +4,7 @@ export default defineEslint({
   typescript: true,
   yaml: true,
   rules: {
-    'no-undefined': 0
+    'no-undefined': 0,
+    'complexity': ['error', { max: 20 }]
   }
 });

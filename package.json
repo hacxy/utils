@@ -22,23 +22,24 @@
   "scripts": {
     "build": "rolldown -c ./rolldown.prod.js",
     "dev": "rolldown -c ./rolldown.dev.js -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:staged": "eslint --fix",
     "release": "bump",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "test": "vitest run"
   },
   "devDependencies": {
     "@hacxy/bump": "0.0.1-beta.1",
     "@hacxy/eslint-config": "^0.1.0",
     "eslint": "^9.29.0",
-    "lint-staged": "^15.2.11",
+    "lint-staged": "^16.1.2",
     "rolldown": "1.0.0-beta.19",
     "rolldown-plugin-dts": "^0.13.12",
     "rollup-plugin-delete": "^3.0.1",
     "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
