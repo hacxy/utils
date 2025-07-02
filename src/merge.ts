@@ -1,94 +1,69 @@
-import { deepClone } from './clone';
 import { isArray, isPlainObject } from './is';
 
-/**
- * 深度合并对象
- * @param {arrayMergeStrategy} options  数组合并策略 ('concat' | 'replace' | 'merge')
- * @param sources 要合并的对象列表
- * @returns 合并后的新对象
- */
-export function mergeObject<T extends Record<string, any>>(
-  options: { arrayMergeStrategy?: 'concat' | 'replace' | 'merge' } = {},
-  ...sources: Partial<T>[]): T {
-  // 默认选项
-  const { arrayMergeStrategy = 'replace' } = options;
+interface DeepMergeOptions {
+  arrayMerge?: 'replace' | 'merge'
+}
 
-  // 如果没有源对象，返回空对象
-  if (sources.length === 0) return {} as T;
+function mergeObject<TSource extends Record<string, any>, TTarget extends Record<string, any>>(
+  source: TSource,
+  target: TTarget,
+  options: DeepMergeOptions = {}
+): TSource & TTarget {
+  // 创建合并后的对象（使用 source 的原型）
+  const merged = Object.create(Object.getPrototypeOf(source)) as TSource & TTarget;
 
-  // 只有一个源对象时，直接深拷贝返回
-  if (sources.length === 1) return deepClone(sources[0]) as T;
+  // 先复制 source 的所有属性
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      merged[key] = source[key] as any;
+    }
+  }
 
-  // 初始目标对象
-  const target = deepClone(sources[0]) as T;
-
-  // 遍历所有源对象
-  for (let i = 1; i < sources.length; i++) {
-    const source = sources[i];
-    if (source === null || typeof source !== 'object') continue;
-
-    // 遍历源对象的所有属性
-    for (const key in source) {
-      if (!Object.prototype.hasOwnProperty.call(source, key)) continue;
-
-      const targetValue = target[key];
+  // 合并 target 的属性
+  for (const key in target) {
+    if (Object.prototype.hasOwnProperty.call(target, key)) {
       const sourceValue = source[key];
+      const targetValue = target[key as keyof TTarget];
 
-      // 1. 源值是数组
-      if (isArray(sourceValue)) {
-        // 目标值也是数组 - 根据策略合并
-        if (isArray(targetValue)) {
-          switch (arrayMergeStrategy) {
-            case 'concat':
-              target[key] = [...targetValue, ...sourceValue] as any;
-              break;
-            case 'merge': {
-              // 递归合并数组元素
-              const minLength = Math.min(targetValue.length, sourceValue.length);
-              const mergedArray: T[] = [];
-              for (let j = 0; j < minLength; j++) {
-                mergedArray.push(mergeObject(options, targetValue[j], sourceValue[j])
-                );
-              }
-              // 处理剩余元素
-              if (targetValue.length > minLength) {
-                mergedArray.push(...targetValue.slice(minLength));
-              }
-              else if (sourceValue.length > minLength) {
-                mergedArray.push(...sourceValue.slice(minLength));
-              }
-              target[key] = mergedArray as any;
-              break;
-            }
-            case 'replace':
-            default:
-              target[key] = [...sourceValue] as any; // 创建新数组
-          }
-        }
-        // 目标值不是数组 - 直接覆盖
-        else {
-          target[key] = [...sourceValue] as any;
-        }
+      // 处理数组
+      if (isArray(sourceValue) && isArray(targetValue)) {
+        merged[key as keyof (TSource & TTarget)] = handleArrayMerge(
+          sourceValue,
+          targetValue,
+          options
+        ) as any;
       }
-      // 2. 源值是普通对象
-      else if (isPlainObject(sourceValue)) {
-        // 目标值也是普通对象 - 递归合并
-        if (isPlainObject(targetValue)) {
-          target[key] = mergeObject(options, targetValue, sourceValue) as any;
-        }
-        // 目标值不是对象 - 直接覆盖
-        else {
-          target[key] = deepClone(sourceValue) as any;
-        }
+      // 递归合并对象
+      else if (
+        isPlainObject(sourceValue)
+        && isPlainObject(targetValue)
+      ) {
+        (merged as any)[key as keyof (TSource & TTarget)] = mergeObject(
+          sourceValue,
+          targetValue,
+          options
+        );
       }
-
-      // 3. 其他类型（基本类型、函数等）
+      // 其他情况直接覆盖
       else {
-        target[key] = deepClone(sourceValue) as any;
+        merged[key as keyof (TSource & TTarget)] = targetValue as any;
       }
     }
   }
 
-  return target;
+  return merged;
 }
 
+// 处理数组合并
+function handleArrayMerge(
+  source: any[],
+  target: any[],
+  options: DeepMergeOptions
+): any[] {
+  const strategy = options.arrayMerge || 'replace';
+
+  return strategy === 'merge' ? [...source, ...target] : [...target];
+}
+
+export { mergeObject };
+export type { DeepMergeOptions };
