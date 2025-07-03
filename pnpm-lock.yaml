@@ -14,6 +14,9 @@ importers:
       '@hacxy/eslint-config':
         specifier: ^0.1.0
         version: 0.1.0(@vue/compiler-sfc@3.5.17)(eslint@9.29.0)(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(yaml@2.8.0))
+      conventional-changelog-cli:
+        specifier: ^5.0.0
+        version: 5.0.0(conventional-commits-filter@5.0.0)
       eslint:
         specifier: ^9.29.0
         version: 9.29.0
