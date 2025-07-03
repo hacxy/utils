@@ -27,6 +27,9 @@
     "lint:staged": "eslint --fix",
     "release": "bump",
     "prepare": "simple-git-hooks",
+    "docs:dev": "typedoc && vitepress dev docs",
+    "docs:build": "typedoc && npm run build && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "test": "vitest run"
   },
   "devDependencies": {
@@ -39,7 +42,11 @@
     "rolldown-plugin-dts": "^0.13.12",
     "rollup-plugin-delete": "^3.0.1",
     "simple-git-hooks": "^2.11.1",
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "^4.7.0",
     "typescript": "^5.8.3",
+    "vitepress": "^1.6.3",
+    "vitepress-theme-mild": "^0.8.4",
     "vitest": "^3.2.4"
   },
   "simple-git-hooks": {

@@ -1,16 +1,28 @@
 import type { Finite } from './types';
 
+/**
+ * @category 类型守卫
+ */
 export function isNull(value: unknown): value is null {
   return value === null;
 }
+/**
+ * @category 类型守卫
+ */
 export function isBoolean(value: unknown): value is boolean {
   return value === true || value === false;
 }
 
+/**
+ * @category 类型守卫
+ */
 export function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
+/**
+ * @category 类型守卫
+ */
 export function isArray<T = unknown>(value: unknown, assertion?: (value: T) => value is T): value is T[] {
   if (!Array.isArray(value)) {
     return false;
@@ -27,10 +39,16 @@ export function isArray<T = unknown>(value: unknown, assertion?: (value: T) => v
   return value.every(element => assertion(element));
 }
 
+/**
+ * @category 类型守卫
+ */
 export function isEmptyArray(array: unknown[]): array is never[] {
   return array.length === 0;
 }
 
+/**
+ * @category 类型守卫
+ */
 // eslint-disable-next-line ts/no-unsafe-function-type
 export function isFunction(value: unknown): value is Function {
   return typeof value === 'function';
@@ -47,7 +65,7 @@ export function isFunction(value: unknown): value is Function {
  * [1, undefined, 2].filter(isDefined);
  * //=> [1, 2]
  * ```
- * @category Type guard
+ * @category 类型守卫
  *
  */
 export function isDefined<T>(value: T | undefined): value is T {

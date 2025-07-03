@@ -5,6 +5,6 @@ export default defineEslint({
   yaml: true,
   rules: {
     'no-undefined': 0,
-    'complexity': ['error', { max: 20 }]
-  }
+  },
+  ignores: ['docs/api']
 });
