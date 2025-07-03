@@ -1,0 +1,25 @@
+# Utils
+
+[![test](https://github.com/hacxy/utils/workflows/Test/badge.svg?color=8187ff&labelColor=1b1b1f)](https://github.com/hacxy/utils/actions)
+[![npm](https://img.shields.io/npm/v/@hacxy/utils?color=FFB6C1&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/@hacxy/utils)
+
+Platform-independent, TypeScript project utility tools.
+
+## Install
+
+```sh
+npm install @hacxy/utils
+```
+
+## Usage
+
+```ts
+import { arrayIncludes } from '@hacxy/utils';
+
+const arr = [1, 2, 3];
+arrayIncludes(input, 1); // => true;
+```
+
+## License
+
+[MIT](./LICENSE) License &copy; 2023-PRESENT [Hacxy](https://github.com/hacxy)
