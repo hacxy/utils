@@ -80,18 +80,34 @@ export function isNan(value: unknown) {
   return Number.isNaN(value);
 }
 
+/**
+ * 判断是否为undefined
+ * @category 类型守卫
+ */
 export function isUndefined(value: unknown): value is undefined {
   return value === undefined;
 }
 
+/**
+ * 判断是否为数字类型
+ * @category 类型守卫
+ */
 export function isNil(value: unknown) {
   return isUndefined(value) || isNull(value);
 }
 
+/**
+ * 判断是否为数字类型
+ * @category 类型守卫
+ */
 export function isNumber(value: unknown): value is number {
   return typeof value === 'number' && !Number.isNaN(value);
 }
 
+/**
+ * 判断是否为普通的对象
+ * @category 类型守卫
+ */
 export function isPlainObject<Value = unknown>(value: unknown): value is Record<PropertyKey, Value> {
   if (typeof value !== 'object' || value === null) {
     return false;
@@ -103,8 +119,10 @@ export function isPlainObject<Value = unknown>(value: unknown): value is Record<
 }
 
 /**
- * 用于判断传入的值是否为有限数——也就是说，它检查给定的值是否为数字，并且该数字既不是无穷大 Infinity ，也不是无穷小 Infinity ，更不是NaN
+ * 用于判断传入的值是否为有限数
+ * 也就是说，它检查给定的值是否为数字，并且该数字既不是无穷大 Infinity ，也不是无穷小 Infinity ，更不是NaN
  * 另外这是一个作为类型守卫正确工作的 `Number.isFinite()` 的替代方案
+ * @category 类型守卫
  */
-export const isFinite = Number.isFinite as <T extends number>(value: T) => value is Finite<T>;
+export const isFinite = <T>(value: T) => Number.isFinite(value) as unknown as <T extends number>(value: T) => value is Finite<T>;
 

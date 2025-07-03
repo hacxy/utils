@@ -5,7 +5,7 @@ module.exports = {
   out: './docs/api',
   plugin: ['typedoc-plugin-markdown', './docs/.vitepress/theme/typedoc-theme.mjs'],
   theme: 'themeExpand',
-  hideBreadcrumbs: true,
+  // hideBreadcrumbs: true,
   hidePageHeader: true,
   hidePageTitle: false,
   disableSources: true,
@@ -15,8 +15,9 @@ module.exports = {
   // expandObjects: true,
   expandParameters: true,
   outputFileStrategy: 'members',
-  entryFileName: 'index.md',
+  entryFileName: false,
   modulesFileName: 'index.md',
+
   // flattenOutputFiles: true,
   textContentMappings: {
     'label.name': '',

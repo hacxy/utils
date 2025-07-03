@@ -6,5 +6,5 @@ export default defineEslint({
   rules: {
     'no-undefined': 0,
   },
-  ignores: ['docs/api']
+  ignores: ['docs/api', 'docs/.vitepress/theme/navigation.json']
 });

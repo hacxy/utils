@@ -8,8 +8,8 @@ hero:
   tagline: 大小仅2kb的Typescript工具库
   actions:
     - theme: brand
-      text: 快速开始
-      link: /guide/quick-start.md
+      text: API列表
+      link: /api/
 
 features:
   - title: 开箱即用
@@ -19,6 +19,21 @@ features:
   - title: 高兼容
     details: 默认集成 cubism2 与 cubism5 支持目前所有模型版本, 无需额外引入SDK
 ---
+
+## 安装
+
+```sh
+npm install @hacxy/utils
+```
+
+## 使用
+
+```ts
+import { arrayIncludes } from '@hacxy/utils';
+
+const arr = [1, 2, 3];
+arrayIncludes(input, 1); // => true;
+```
 
 <style>
 :root {
