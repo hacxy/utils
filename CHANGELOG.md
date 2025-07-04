@@ -1,3 +1,9 @@
+# [0.2.0](https://github.com/hacxy/ts-utils/compare/v0.1.0...v0.2.0) (2025-07-04)
+
+### Features
+
+- Add improved built-in functions objectKeys ([740ce4d](https://github.com/hacxy/ts-utils/commit/740ce4d003a57118b0162bee1f4bf6566d26b7b2))
+
 # [0.1.0](https://github.com/hacxy/ts-utils/compare/v0.0.1-beta.1...v0.1.0) (2025-07-03)
 
 ### Features
