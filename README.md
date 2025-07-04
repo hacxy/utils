@@ -1,8 +1,3 @@
----
-group:
-  text: "API"
----
-
 # Utils
 
 [![test](https://github.com/hacxy/utils/workflows/Test/badge.svg?color=8187ff&labelColor=1b1b1f)](https://github.com/hacxy/utils/actions)

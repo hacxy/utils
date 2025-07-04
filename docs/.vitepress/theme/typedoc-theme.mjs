@@ -4,11 +4,15 @@ import { MarkdownTheme, MarkdownThemeContext } from 'typedoc-plugin-markdown';
 function handleFormatSidebar(nav) {
   return nav.map(item => {
     let items = [];
+    const link = item.path && `/api/${item.path}`;
+
     if (item.children && item.children.length) {
       items = handleFormatSidebar(item.children);
+      return { text: item.title, items, link };
     }
-    const link = item.path && `api/${item.path}`;
-    return { text: item.title, items, link };
+    else {
+      return { text: item.title, link };
+    }
   });
 }
 
