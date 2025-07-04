@@ -1,12 +1,14 @@
 import type { Finite } from './types';
 
 /**
+ * 用于判断是否为null
  * @category 类型守卫
  */
 export function isNull(value: unknown): value is null {
   return value === null;
 }
 /**
+ * 用于判断是否为布尔值类型
  * @category 类型守卫
  */
 export function isBoolean(value: unknown): value is boolean {
@@ -14,6 +16,7 @@ export function isBoolean(value: unknown): value is boolean {
 }
 
 /**
+ * 用于判断是否为字符串类型
  * @category 类型守卫
  */
 export function isString(value: unknown): value is string {
@@ -21,6 +24,9 @@ export function isString(value: unknown): value is string {
 }
 
 /**
+ * 用于判断是否为数组类型
+ * @param value 任意值
+ * @param assertion 断言方法
  * @category 类型守卫
  */
 export function isArray<T = unknown>(value: unknown, assertion?: (value: T) => value is T): value is T[] {
@@ -72,16 +78,24 @@ export function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined;
 }
 
+/**
+ * 是否为对象
+ * @category 类型守卫
+ */
 export function isObject(value: unknown): value is object {
   return !isNull(value) && (typeof value === 'object' || isFunction(value));
 }
 
+/**
+ * 是否为NaN
+ * @category 类型守卫
+ */
 export function isNan(value: unknown) {
   return Number.isNaN(value);
 }
 
 /**
- * 判断是否为undefined
+ * 是否为undefined
  * @category 类型守卫
  */
 export function isUndefined(value: unknown): value is undefined {
@@ -89,7 +103,7 @@ export function isUndefined(value: unknown): value is undefined {
 }
 
 /**
- * 判断是否为数字类型
+ * 是否为数字类型
  * @category 类型守卫
  */
 export function isNil(value: unknown) {
@@ -97,7 +111,7 @@ export function isNil(value: unknown) {
 }
 
 /**
- * 判断是否为数字类型
+ * 是否为数字类型
  * @category 类型守卫
  */
 export function isNumber(value: unknown): value is number {
@@ -105,7 +119,7 @@ export function isNumber(value: unknown): value is number {
 }
 
 /**
- * 判断是否为普通的对象
+ * 是否为普通的对象
  * @category 类型守卫
  */
 export function isPlainObject<Value = unknown>(value: unknown): value is Record<PropertyKey, Value> {

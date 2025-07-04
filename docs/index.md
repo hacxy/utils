@@ -1,30 +1,50 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
 hero:
   name: "Utils"
   text: "无平台限制的Typescript实用工具库"
-  tagline: 大小仅2kb的Typescript工具库
+  tagline: Typescript工具库, 大小不超过10kb
   actions:
     - theme: brand
       text: API列表
       link: /api/
-
+    - theme: alt
+      text: github
+      link: https://github.com/hacxy/utils
 features:
-  - title: 开箱即用
-    details: 在浏览器中加载Live2D模型仅需两步
-  - title: 零依赖
-    details: 基于 Vite 现代构建链实现极简交付，源码依赖与生产包完全解耦, 意味着这是一个可以被独立使用的纯js文件
-  - title: 高兼容
-    details: 默认集成 cubism2 与 cubism5 支持目前所有模型版本, 无需额外引入SDK
+  - title: 轻量
+    icon: 🪽
+    details: 纯js文件不超过10kb大小
+  - title: 不依赖平台
+    icon: 🌈
+    details: 任意可以运行javscript的平台均可使用, 如:Nodejs、浏览器
+  - title: 强类型
+    icon: ✨
+    details: 所有方法将正确的推断出返回值类型
 ---
 
 ## 安装
 
-```sh
+::: code-group
+
+```sh [npm]
 npm install @hacxy/utils
 ```
+
+```sh [yarn]
+yarn add @hacxy/utils
+```
+
+```sh [pnpm]
+pnpm add @hacxy/utils
+```
+
+```sh [bun]
+bun add @hacxy/utils
+```
+
+:::
 
 ## 使用
 

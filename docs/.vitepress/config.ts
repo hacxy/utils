@@ -12,10 +12,9 @@ export default defineConfigWithTheme<ThemeConfig>({
   themeConfig: {
     outline: [2, 3],
     // https://vitepress.dev/reference/default-theme-config
-    // logo: '/logo.svg',
+    logo: '/typescript.svg',
     nav: [
       { text: 'API', link: '/api/', activeMatch: '/api/' },
-      // { text: '参考', link: '/api/interfaces/Options.md' , activeMatch: '/api/'},
       {
         text: pkgInfo.version, items: [
           {
