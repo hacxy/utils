@@ -3,10 +3,10 @@ import { defineConfigWithTheme } from 'vitepress';
 import baseConfig from 'vitepress-theme-mild/config';
 import pkgInfo from '../../package.json';
 import navigation from './theme/navigation.json';
-// https://vitepress.dev/reference/site-config
+
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'Utils',
-  description: 'Utils documentation',
+  description: 'Typescript utils',
   extends: baseConfig,
   ignoreDeadLinks: true,
   themeConfig: {
