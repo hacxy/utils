@@ -52,7 +52,7 @@ bun add @hacxy/utils
 import { arrayIncludes } from '@hacxy/utils';
 
 const arr = [1, 2, 3];
-arrayIncludes(input, 1); // => true;
+arrayIncludes(arr, 1); // => true;
 ```
 
 <style>

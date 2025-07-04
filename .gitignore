@@ -4,3 +4,4 @@ cache
 .cache
 docs/api
 docs/.vitepress/theme/navigation.json
+.DS_Store
