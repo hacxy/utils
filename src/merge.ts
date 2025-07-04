@@ -1,10 +1,11 @@
+import type { DeepMergeOptions } from './types';
 import { isArray, isPlainObject } from './is';
 
-interface DeepMergeOptions {
-  arrayMerge?: 'replace' | 'merge'
-}
-
-function mergeObject<TSource extends Record<string, any>, TTarget extends Record<string, any>>(
+/**
+ * 深度合并一个对象
+ * @category 实用函数
+ */
+export function mergeObject<TSource extends Record<string, any>, TTarget extends Record<string, any>>(
   source: TSource,
   target: TTarget,
   options: DeepMergeOptions = {}
@@ -65,5 +66,4 @@ function handleArrayMerge(
   return strategy === 'merge' ? [...source, ...target] : [...target];
 }
 
-export { mergeObject };
 export type { DeepMergeOptions };

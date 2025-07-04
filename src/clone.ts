@@ -3,6 +3,7 @@ import { isArray } from './is';
 /**
  * 深克隆函数
  * @param source 需要克隆的数据
+ * @category 实用函数
  */
 export function deepClone<T>(source: T): T {
   // 使用WeakMap解决循环引用
