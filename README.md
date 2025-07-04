@@ -1,6 +1,6 @@
 ---
 group:
-  text: 'API'
+  text: "API"
 ---
 
 # Utils
@@ -9,6 +9,8 @@ group:
 [![npm](https://img.shields.io/npm/v/@hacxy/utils?color=FFB6C1&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/@hacxy/utils)
 
 无平台限制的Typescript工具库
+
+[查阅文档](https://utils.hacxy.cn)
 
 ## 安装
 
@@ -22,7 +24,7 @@ npm install @hacxy/utils
 import { arrayIncludes } from '@hacxy/utils';
 
 const arr = [1, 2, 3];
-arrayIncludes(input, 1); // => true;
+arrayIncludes(arr, 1); // => true;
 ```
 
 ## License
