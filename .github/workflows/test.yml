@@ -40,8 +40,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: test-report/
-          target: ~/Projects/.utils_test_temp/
+          source: coverage/
+          target: ~/Projects/.utils_coverage_temp/
           rm: true
           strip_components: 1
 
@@ -52,7 +52,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            mkdir -p ~/Projects/utils-test
-            rm -rf ~/Projects/utils-test/*
-            cp -rf ~/Projects/.utils_test_temp/*  ~/Projects/utils-test/
-            rm -rf ~/Projects/.utils_test_temp
+            mkdir -p ~/Projects/utils-coverage
+            rm -rf ~/Projects/utils-coverage/*
+            cp -rf ~/Projects/.utils_coverage_temp/*  ~/Projects/utils-coverage/
+            rm -rf ~/Projects/.utils_coverage_temp
