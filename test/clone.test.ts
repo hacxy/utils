@@ -11,4 +11,7 @@ it('deepClone', () => {
   mapInput.set('foo', { name: 'hacxy', friend: ['aaa', 'bbb', 'ccc'] });
   const newMapResult = deepClone(mapInput);
   assert.isFalse(newMapResult === mapInput);
+  const setInput = new Set([1, 2, 3]);
+  const newSetResult = deepClone(setInput);
+  assert.isFalse(newSetResult === setInput);
 });
