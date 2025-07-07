@@ -33,3 +33,26 @@ jobs:
 
       - name: E2E test
         run: pnpm test
+
+      - name: 部署测试报告到服务器
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          source: test-report/
+          target: ~/Projects/.utils_test_temp/
+          rm: true
+          strip_components: 1
+
+      - name: 执行远程脚本命令
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            mkdir -p ~/Projects/utils_test
+            rm -rf ~/Projects/utils_test/*
+            cp -rf ~/Projects/.utils_test_temp/*  ~/Projects/utils_test/
+            rm -rf ~/Projects/.utils_test_temp
