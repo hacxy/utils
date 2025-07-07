@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from 'vitest';
-import { isArray, isBoolean, isDefined, isEmptyArray, isFunction, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isString, isUndefined } from '../src/is.ts';
+import { isArray, isBoolean, isDefined, isEmptyArray, isFunction, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isString, isUndefined } from '../src/index.ts';
 
 describe('is', () => {
   it('isNumber', () => {

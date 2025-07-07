@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { arrayIncludes } from '../src/array-includes.ts';
+import { arrayIncludes } from '../src/index.ts';
 
 it('arrayIncludes', () => {
   const input = [1, 2, 3];

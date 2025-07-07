@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { mergeObject } from '../src/merge.ts';
+import { mergeObject } from '../src/index.ts';
 
 it('mergeObject', () => {
   const input1 = { a: 'a', b: 'b', d: [1, 2] };

@@ -5,3 +5,5 @@ cache
 docs/api
 docs/.vitepress/theme/navigation.json
 .DS_Store
+coverage
+test-report
