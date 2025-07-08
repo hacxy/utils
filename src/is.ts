@@ -1,4 +1,4 @@
-import type { Finite } from './types';
+import type { Finite, NonEmptyString } from './types';
 
 const NODE_TYPE_ELEMENT = 1;
 const DOM_PROPERTIES_TO_CHECK: Array<(keyof HTMLElement)> = [
@@ -88,6 +88,14 @@ export function isDate(value: unknown): value is Date {
  */
 export function isRegExp(value: unknown): value is RegExp {
   return getObjectType(value) === 'RegExp';
+}
+
+/**
+ * 用于判断是否为非空字符串
+ * @category 类型守卫
+ */
+export function isNonEmptyString(value: unknown): value is NonEmptyString {
+  return isString(value) && value.length > 0;
 }
 
 /**

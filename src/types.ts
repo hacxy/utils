@@ -36,3 +36,8 @@ export interface DeepMergeOptions {
  */
 export type ObjectKeys<T extends object> = `${Exclude<keyof T, symbol>}`;
 
+/**
+ * 非空字符串
+ * @category 类型定义
+ */
+export type NonEmptyString = string & { 0: string };
