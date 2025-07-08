@@ -265,3 +265,29 @@ export function isMap<Key = unknown, Value = unknown>(value: unknown): value is 
 export function isSet<T = unknown>(value: unknown): value is Set<T> {
   return getObjectType(value) === 'Set';
 }
+
+/**
+ * 用于判断是否为Symbol类型
+ * @category 类型守卫
+ */
+export function isSymbol(value: unknown): value is symbol {
+  return typeof value === 'symbol';
+}
+
+/**
+ * 用于判断是否为Url字符串
+ * @category 类型守卫
+ */
+export function isUrlString(value: unknown): value is string {
+  if (!isString(value)) {
+    return false;
+  }
+
+  try {
+    new URL(value); // eslint-disable-line no-new
+    return true;
+  }
+  catch {
+    return false;
+  }
+}
