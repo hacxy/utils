@@ -1,6 +1,13 @@
 /**
  * 判断字符串中是否包含汉字
  * @category 实用函数
+ * @param str 字符串内容
+ * @example
+ * ```ts
+ * hasChinese('你好')  // => true
+ * hasChinese('Hello')  // => false
+ * hasChinese('hi, 你好') // => true
+ * ```
  */
 export function hasChinese(str: string): boolean {
   // 匹配扩展汉字范围（包括罕见字和繁体字）
