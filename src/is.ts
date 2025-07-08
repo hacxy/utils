@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { Class, Finite, NodeBuffer, NonEmptyString, WeakRef } from './types';
 import { DOM_PROPERTIES_TO_CHECK, NODE_TYPE_ELEMENT, objectTypeNames } from './constants';
 
@@ -214,9 +215,17 @@ export function isSymbol(value: unknown): value is symbol {
   return typeof value === 'symbol';
 }
 
+/**
+ * 用于判断是否为Blob类型
+ * @category 类型守卫
+ */
 export function isBlob(value: unknown): value is Blob {
   return getObjectType(value) === 'Blob';
 }
+/**
+ * 用于判断是否为Buffer类型
+ * @category 类型守卫
+ */
 export function isBuffer(value: unknown): value is NodeBuffer {
   return (value as any)?.constructor?.isBuffer?.(value) ?? false;
 }
@@ -228,7 +237,6 @@ export function isUrlString(value: unknown): value is string {
   if (!isString(value)) {
     return false;
   }
-
   try {
     new URL(value); // eslint-disable-line no-new
     return true;
@@ -238,6 +246,10 @@ export function isUrlString(value: unknown): value is string {
   }
 }
 
+/**
+ * 用于判断是否为ArrayBuffer类型
+ * @category 类型守卫
+ */
 export function isArrayBuffer(value: unknown): value is ArrayBuffer {
   return getObjectType(value) === 'ArrayBuffer';
 }
@@ -251,38 +263,73 @@ export function isFormData(value: unknown): value is FormData {
 }
 /**
  * 用于判断是否为空对象
+ * @category 类型守卫
  */
 export function isEmptyObject<Key extends keyof any = string>(value: unknown): value is Record<Key, never> {
   return isObject(value) && !isMap(value) && !isSet(value) && Object.keys(value).length === 0;
 }
+/**
+ * 用于判断是否为空的Map类型
+ * @category 类型守卫
+ */
 export function isEmptyMap(value: unknown): value is Map<never, never> {
   return isMap(value) && value.size === 0;
 }
+/**
+ * 用于判断是否为空的Set类型
+ * @category 类型守卫
+ */
 export function isEmptySet(value: unknown): value is Set<never> {
   return isSet(value) && value.size === 0;
 }
 /**
+ * 用于判断是否为空的Array类型
  * @category 类型守卫
  */
 export function isEmptyArray(array: unknown[]): array is never[] {
   return array.length === 0;
 }
+
+/**
+ * 用于判断是否为Class类型
+ * @category 类型守卫
+ */
 export function isClass<T = unknown>(value: unknown): value is Class<T> {
   return isFunction(value) && value.toString().startsWith('class ');
 }
+/**
+ * 用于判断是否为WeakMap类型
+ * @category 类型守卫
+ */
 export function isWeakMap<Key extends object = object, Value = unknown>(value: unknown): value is WeakMap<Key, Value> {
   return getObjectType(value) === 'WeakMap';
 }
+/**
+ * 用于判断是否为WeakRef类型
+ * @category 类型守卫
+ */
 export function isWeakRef(value: unknown): value is WeakRef<object> {
   return getObjectType(value) === 'WeakRef';
 }
+
+/**
+ * 用于判断是否为WeakSet类型
+ * @category 类型守卫
+ */
 export function isWeakSet(value: unknown): value is WeakSet<object> {
   return getObjectType(value) === 'WeakSet';
 }
+/**
+ * 用于判断是否为Error类型
+ * @category 类型守卫
+ */
 export function isError(value: unknown): value is Error {
   return getObjectType(value) === 'Error';
 }
-
+/**
+ * 用于判断是否为正数
+ * @category 类型守卫
+ */
 export function isPositiveNumber(value: unknown): value is number {
   return isNumber(value) && value > 0;
 }
