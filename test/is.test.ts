@@ -24,6 +24,12 @@ describe('is', () => {
   it('isPlainObject', () => {
     assert.isTrue(isPlainObject({}));
     assert.isFalse(isPlainObject(null));
+    assert.isFalse(isPlainObject(() => undefined));
+    assert.isFalse(isPlainObject(Number()));
+
+    assert.isTrue(isPlainObject(Object.create(null)));
+    assert.isFalse(isPlainObject(new Map()));
+    assert.isFalse(isPlainObject([]));
   });
   it('isUndefined', () => {
     assert.isTrue(isUndefined(undefined));

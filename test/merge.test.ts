@@ -15,4 +15,7 @@ it('mergeObject', () => {
   expect(value2).toEqual(result2);
   const value3 = mergeObject(input3, input4);
   expect(value3).toEqual(result3);
+
+  const value4 = mergeObject(input1, input2);
+  expect(value4).toEqual(result1);
 });

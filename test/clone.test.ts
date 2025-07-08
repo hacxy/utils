@@ -23,4 +23,12 @@ it('deepClone', () => {
   obj2.ref = obj1;
   const objResult = deepClone(obj1);
   assert.isFalse(obj1 === objResult);
+
+  const date = new Date();
+  const newDate = deepClone(date);
+  assert.isFalse(date === newDate);
+
+  const reg = /^w/;
+  const newReg = deepClone(reg);
+  assert.isFalse(reg === newReg);
 });
