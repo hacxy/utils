@@ -1,5 +1,98 @@
 import type { Finite } from './types';
 
+const NODE_TYPE_ELEMENT = 1;
+const DOM_PROPERTIES_TO_CHECK: Array<(keyof HTMLElement)> = [
+  'innerHTML',
+  'ownerDocument',
+  'style',
+  'attributes',
+  'nodeValue',
+];
+const typedArrayTypeNames = [
+  'Int8Array',
+  'Uint8Array',
+  'Uint8ClampedArray',
+  'Int16Array',
+  'Uint16Array',
+  'Int32Array',
+  'Uint32Array',
+  'Float32Array',
+  'Float64Array',
+  'BigInt64Array',
+  'BigUint64Array',
+] as const;
+
+const objectTypeNames = [
+  'Function',
+  'Generator',
+  'AsyncGenerator',
+  'GeneratorFunction',
+  'AsyncGeneratorFunction',
+  'AsyncFunction',
+  'Observable',
+  'Array',
+  'Buffer',
+  'Blob',
+  'Object',
+  'RegExp',
+  'Date',
+  'Error',
+  'Map',
+  'Set',
+  'WeakMap',
+  'WeakSet',
+  'WeakRef',
+  'ArrayBuffer',
+  'SharedArrayBuffer',
+  'DataView',
+  'Promise',
+  'URL',
+  'FormData',
+  'URLSearchParams',
+  'HTMLElement',
+  'NaN',
+  ...typedArrayTypeNames,
+] as const;
+
+type ObjectTypeName = typeof objectTypeNames[number];
+
+function isObjectTypeName(name: unknown): name is ObjectTypeName {
+  return objectTypeNames.includes(name as ObjectTypeName);
+}
+
+function getObjectType(value: unknown): ObjectTypeName | undefined {
+  const objectTypeName = Object.prototype.toString.call(value).slice(8, -1);
+
+  if (/HTML\w+Element/.test(objectTypeName) && isHtmlElement(value)) {
+    return 'HTMLElement';
+  }
+
+  if (isObjectTypeName(objectTypeName)) {
+    return objectTypeName;
+  }
+
+  return undefined;
+}
+
+/**
+ * @category 类型守卫
+ */
+export function isDate(value: unknown): value is Date {
+  return getObjectType(value) === 'Date';
+}
+
+/**
+ * 用于判读是否为HtmlElement
+ * @category 类型守卫
+ */
+export function isHtmlElement(value: unknown): value is HTMLElement {
+  return isObject(value)
+    && (value as HTMLElement).nodeType === NODE_TYPE_ELEMENT
+    && isString((value as HTMLElement).nodeName)
+    && !isPlainObject(value)
+    && DOM_PROPERTIES_TO_CHECK.every(property => property in value);
+}
+
 /**
  * 用于判断是否为null
  * @category 类型守卫

@@ -3,8 +3,8 @@
 layout: home
 hero:
   name: "Utils"
-  text: "无平台限制的Typescript实用工具库"
-  tagline: 大小不超过10kb的Typescript工具库
+  text: "JavaScript工具库"
+  tagline: 大小不到10kb且具备强类型
   actions:
     - theme: brand
       text: API列表
@@ -15,7 +15,7 @@ hero:
 features:
   - title: 轻量
     icon: 🪽
-    details: 纯js文件大小不到10kb
+    details: 大小不到10kb
   - title: 平台无关
     icon: 🌈
     details: 与平台无关,在任意可运行javascript的平台中都可使用

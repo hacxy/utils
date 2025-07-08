@@ -3,7 +3,7 @@
 [![test](https://github.com/hacxy/utils/workflows/Test/badge.svg?color=8187ff&labelColor=1b1b1f)](https://github.com/hacxy/utils/actions)
 [![npm](https://img.shields.io/npm/v/@hacxy/utils?color=FFB6C1&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/@hacxy/utils)
 
-无平台限制的Typescript工具库
+无平台限制的 JavaScript 工具库
 
 [查阅文档](https://utils.hacxy.cn)
 
