@@ -250,3 +250,18 @@ export function isPlainObject<Value = unknown>(value: unknown): value is Record<
  */
 export const isFinite = <T>(value: T) => Number.isFinite(value) as unknown as <T extends number>(value: T) => value is Finite<T>;
 
+/**
+ * 用于判断是否为Map类型
+ * @category 类型守卫
+ */
+export function isMap<Key = unknown, Value = unknown>(value: unknown): value is Map<Key, Value> {
+  return getObjectType(value) === 'Map';
+}
+
+/**
+ * 用于判断是否为Set类型
+ * @category 类型守卫
+ */
+export function isSet<T = unknown>(value: unknown): value is Set<T> {
+  return getObjectType(value) === 'Set';
+}
