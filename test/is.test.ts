@@ -94,5 +94,6 @@ describe('is', () => {
   it('isFinite', () => {
     expect(isFinite(1000)).toEqual(true);
     expect(isFinite(Infinity)).toEqual(false);
+    expect(isFinite(-Infinity)).toEqual(false);
   });
 });
