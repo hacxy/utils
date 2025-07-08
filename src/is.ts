@@ -75,10 +75,19 @@ function getObjectType(value: unknown): ObjectTypeName | undefined {
 }
 
 /**
+ * 用于判断是否为Date类型
  * @category 类型守卫
  */
 export function isDate(value: unknown): value is Date {
   return getObjectType(value) === 'Date';
+}
+
+/**
+ * 用于判断是否为RegExp类型
+ * @category 类型守卫
+ */
+export function isRegExp(value: unknown): value is RegExp {
+  return getObjectType(value) === 'RegExp';
 }
 
 /**
