@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from 'vitest';
-import { isArray, isBoolean, isDefined, isEmptyArray, isFunction, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isString, isUndefined } from '../src/index.ts';
+import { isArray, isBoolean, isDefined, isEmptyArray, isFinite, isFunction, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isString, isUndefined } from '../src/index.ts';
 
 describe('is', () => {
   it('isNumber', () => {
@@ -23,6 +23,7 @@ describe('is', () => {
 
   it('isPlainObject', () => {
     assert.isTrue(isPlainObject({}));
+    assert.isFalse(isPlainObject(null));
   });
   it('isUndefined', () => {
     assert.isTrue(isUndefined(undefined));
@@ -83,5 +84,9 @@ describe('is', () => {
     const input = [1, undefined, 3];
     const value = input.filter(isDefined);
     expect(value).toEqual([1, 3]);
+  });
+  it('isFinite', () => {
+    expect(isFinite(1000)).toEqual(true);
+    expect(isFinite(Infinity)).toEqual(false);
   });
 });

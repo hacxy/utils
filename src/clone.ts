@@ -1,4 +1,4 @@
-import { isArray } from './is';
+import { isArray, isObject } from './is';
 
 /**
  * 深克隆函数
@@ -11,7 +11,7 @@ export function deepClone<T>(source: T): T {
 
   function _clone<T>(value: T): T {
     // 1. 处理基本类型和函数
-    if (typeof value !== 'object' || value === null) {
+    if (!isObject(value) || value === null) {
       return value;
     }
 
