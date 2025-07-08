@@ -1,4 +1,4 @@
-import { isArray, isObject } from './is';
+import { isArray, isDate, isMap, isNull, isObject, isRegExp, isSet } from './is';
 
 /**
  * 深克隆函数
@@ -11,13 +11,13 @@ export function deepClone<T>(source: T): T {
 
   function _clone<T>(value: T): T {
     // 1. 处理基本类型和函数
-    if (!isObject(value) || value === null) {
+    if (!isObject(value) || isNull(value)) {
       return value;
     }
 
     // 2. 处理特殊对象类型
-    if (value instanceof Date) return new Date(value) as T;
-    if (value instanceof RegExp) return new RegExp(value) as T;
+    if (isDate(value)) return new Date(value) as T;
+    if (isRegExp(value)) return new RegExp(value) as T;
 
     // 3. 检查循环引用
     if (visited.has(value)) {
@@ -35,7 +35,7 @@ export function deepClone<T>(source: T): T {
     }
 
     // 5. 处理Map
-    if (value instanceof Map) {
+    if (isMap(value)) {
       const result = new Map();
       visited.set(value, result);
       value.forEach((val, key) => {
@@ -45,7 +45,7 @@ export function deepClone<T>(source: T): T {
     }
 
     // 6. 处理Set
-    if (value instanceof Set) {
+    if (isSet(value)) {
       const result = new Set();
       visited.set(value, result);
       value.forEach(val => {

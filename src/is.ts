@@ -1,58 +1,5 @@
-import type { Finite, NonEmptyString } from './types';
-
-const NODE_TYPE_ELEMENT = 1;
-const DOM_PROPERTIES_TO_CHECK: Array<(keyof HTMLElement)> = [
-  'innerHTML',
-  'ownerDocument',
-  'style',
-  'attributes',
-  'nodeValue',
-];
-const typedArrayTypeNames = [
-  'Int8Array',
-  'Uint8Array',
-  'Uint8ClampedArray',
-  'Int16Array',
-  'Uint16Array',
-  'Int32Array',
-  'Uint32Array',
-  'Float32Array',
-  'Float64Array',
-  'BigInt64Array',
-  'BigUint64Array',
-] as const;
-
-const objectTypeNames = [
-  'Function',
-  'Generator',
-  'AsyncGenerator',
-  'GeneratorFunction',
-  'AsyncGeneratorFunction',
-  'AsyncFunction',
-  'Observable',
-  'Array',
-  'Buffer',
-  'Blob',
-  'Object',
-  'RegExp',
-  'Date',
-  'Error',
-  'Map',
-  'Set',
-  'WeakMap',
-  'WeakSet',
-  'WeakRef',
-  'ArrayBuffer',
-  'SharedArrayBuffer',
-  'DataView',
-  'Promise',
-  'URL',
-  'FormData',
-  'URLSearchParams',
-  'HTMLElement',
-  'NaN',
-  ...typedArrayTypeNames,
-] as const;
+import type { Class, Finite, NodeBuffer, NonEmptyString, WeakRef } from './types';
+import { DOM_PROPERTIES_TO_CHECK, NODE_TYPE_ELEMENT, objectTypeNames } from './constants';
 
 type ObjectTypeName = typeof objectTypeNames[number];
 
@@ -153,13 +100,6 @@ export function isArray<T = unknown>(value: unknown, assertion?: (value: T) => v
   }
 
   return value.every(element => assertion(element));
-}
-
-/**
- * @category 类型守卫
- */
-export function isEmptyArray(array: unknown[]): array is never[] {
-  return array.length === 0;
 }
 
 /**
@@ -274,6 +214,12 @@ export function isSymbol(value: unknown): value is symbol {
   return typeof value === 'symbol';
 }
 
+export function isBlob(value: unknown): value is Blob {
+  return getObjectType(value) === 'Blob';
+}
+export function isBuffer(value: unknown): value is NodeBuffer {
+  return (value as any)?.constructor?.isBuffer?.(value) ?? false;
+}
 /**
  * 用于判断是否为Url字符串
  * @category 类型守卫
@@ -290,4 +236,53 @@ export function isUrlString(value: unknown): value is string {
   catch {
     return false;
   }
+}
+
+export function isArrayBuffer(value: unknown): value is ArrayBuffer {
+  return getObjectType(value) === 'ArrayBuffer';
+}
+
+/**
+ * 用于判断是否为FormData类型
+ * @category 类型守卫
+ */
+export function isFormData(value: unknown): value is FormData {
+  return getObjectType(value) === 'FormData';
+}
+/**
+ * 用于判断是否为空对象
+ */
+export function isEmptyObject<Key extends keyof any = string>(value: unknown): value is Record<Key, never> {
+  return isObject(value) && !isMap(value) && !isSet(value) && Object.keys(value).length === 0;
+}
+export function isEmptyMap(value: unknown): value is Map<never, never> {
+  return isMap(value) && value.size === 0;
+}
+export function isEmptySet(value: unknown): value is Set<never> {
+  return isSet(value) && value.size === 0;
+}
+/**
+ * @category 类型守卫
+ */
+export function isEmptyArray(array: unknown[]): array is never[] {
+  return array.length === 0;
+}
+export function isClass<T = unknown>(value: unknown): value is Class<T> {
+  return isFunction(value) && value.toString().startsWith('class ');
+}
+export function isWeakMap<Key extends object = object, Value = unknown>(value: unknown): value is WeakMap<Key, Value> {
+  return getObjectType(value) === 'WeakMap';
+}
+export function isWeakRef(value: unknown): value is WeakRef<object> {
+  return getObjectType(value) === 'WeakRef';
+}
+export function isWeakSet(value: unknown): value is WeakSet<object> {
+  return getObjectType(value) === 'WeakSet';
+}
+export function isError(value: unknown): value is Error {
+  return getObjectType(value) === 'Error';
+}
+
+export function isPositiveNumber(value: unknown): value is number {
+  return isNumber(value) && value > 0;
 }
