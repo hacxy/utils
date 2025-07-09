@@ -1,11 +1,12 @@
 export * from './array-includes.ts';
 export * from './chinese.ts';
 export * from './clone.ts';
+export { getTimestamp } from './get-timestamp.ts';
 export * from './is.ts';
 export * from './merge.ts';
-export * from './object-has-own.ts';
+export { objectHasOwn } from './object-has-own.ts';
 export { objectKeys } from './object-keys.ts';
 export { objectToSearchString } from './object-to-search-string.ts';
 export { parseSearchString } from './parse-search-string.ts';
-export * from './random-number.ts';
+export { randomNumber } from './random-number.ts';
 export * from './types.ts';
