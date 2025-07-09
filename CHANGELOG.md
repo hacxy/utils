@@ -1,3 +1,15 @@
+# [0.3.0](https://github.com/hacxy/ts-utils/compare/v0.2.0...v0.3.0) (2025-07-09)
+
+### Features
+
+- 添加了多个类型守卫相关方法 ([f916b06](https://github.com/hacxy/ts-utils/commit/f916b0682fbff8ac96f4c03fc6cd2bc96867f85b))
+- add isDate and isHtmlElement method ([dc92c1d](https://github.com/hacxy/ts-utils/commit/dc92c1d8146638867e8428441b5a246ddd4ff7db))
+- add isMap and isSet ([068a813](https://github.com/hacxy/ts-utils/commit/068a813d8aa6ba2af0d223c763d663383e3487b5))
+- add isNonEmptyString method ([c6a4e83](https://github.com/hacxy/ts-utils/commit/c6a4e83f1f6bc339b2815fe44023be0db32371b6))
+- add isRegExp method ([b3e53dc](https://github.com/hacxy/ts-utils/commit/b3e53dc2edab06befd19338cb5164c3827cef329))
+- add isSymbol and isUrlString ([64328be](https://github.com/hacxy/ts-utils/commit/64328beacd2d47d822f85fe453717dc1683918c8))
+- add parseSearchString and objectToSearchString methods ([48611e0](https://github.com/hacxy/ts-utils/commit/48611e09cce2c8fc95522ed4375e82cb33e45644))
+
 # [0.2.0](https://github.com/hacxy/ts-utils/compare/v0.1.0...v0.2.0) (2025-07-04)
 
 ### Features
