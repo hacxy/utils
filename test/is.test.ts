@@ -1,5 +1,29 @@
+import { Buffer } from 'node:buffer';
 import { assert, describe, expect, it } from 'vitest';
-import { isArray, isBoolean, isDate, isDefined, isEmptyArray, isFinite, isFunction, isHtmlElement, isMap, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isSet, isString, isUndefined } from '../src/index.ts';
+import { isArray, isArrayBuffer, isBlob, isBoolean, isBuffer, isClass, isDate, isDefined, isEmptyArray, isEmptyMap, isEmptyObject, isEmptySet, isError, isFinite, isFormData, isFunction, isHtmlElement, isMap, isNan, isNil, isNonEmptyString, isNull, isNumber, isObject, isPlainObject, isPositiveNumber, isRegExp, isSet, isString, isSymbol, isUndefined, isUrlString, isWeakMap, isWeakRef, isWeakSet } from '../src/index.ts';
+
+class HTMLMockElement {
+  nodeName: string;
+  nodeType: number;
+  innerHTML: string;
+  ownerDocument: any;
+  style: any;
+  attributes: string;
+  nodeValue: string;
+  constructor() {
+    this.nodeName = 'div';
+    this.nodeType = 1;
+    this.innerHTML = '';
+    this.ownerDocument = {};
+    this.style = {};
+    this.attributes = '';
+    this.nodeValue = '';
+  }
+
+  get [Symbol.toStringTag]() {
+    return 'HTMLMockElement';
+  }
+}
 
 describe('is', () => {
   it('isNumber', () => {
@@ -111,5 +135,77 @@ describe('is', () => {
   it('isHtmlElement', () => {
     expect(isHtmlElement('')).toEqual(false);
     expect(isHtmlElement({})).toEqual(false);
+    const mockElement = new HTMLMockElement();
+    expect(isHtmlElement(mockElement)).toEqual(true);
+  });
+  it('isRegExp', () => {
+    const mockElement = new HTMLMockElement();
+    expect(isRegExp(mockElement)).toEqual(false);
+  });
+  it('isNonEmptyString', () => {
+    expect(isNonEmptyString('')).toEqual(false);
+  });
+  it('isSymbol', () => {
+    const namedSymbol = Symbol('description');
+    expect(isSymbol(namedSymbol)).toEqual(true);
+  });
+  it('isBlob', () => {
+    const textBlob = new Blob(['Hello, world!'], { type: 'text/plain' });
+    expect(isBlob(textBlob)).toEqual(true);
+  });
+  it('isBuffer', () => {
+    const stringBuffer = Buffer.from('Hello Buffer!');
+    expect(isBuffer(stringBuffer)).toEqual(true);
+  });
+  it('isUrlString', () => {
+    expect(isUrlString('https://hacxy.cn')).toEqual(true);
+    expect(isUrlString('hacxy.cn')).toEqual(false);
+    expect(isUrlString('http://hacxy.cn')).toEqual(true);
+    expect(isUrlString(0)).toEqual(false);
+  });
+
+  it('isArrayBuffer', () => {
+    const arrayBuf = new ArrayBuffer(8);
+    expect(isArrayBuffer(arrayBuf)).toEqual(true);
+  });
+  it('isFormData', () => {
+    const formData = new FormData();
+    expect(isFormData(formData)).toEqual(true);
+  });
+  it('isEmptyObject', () => {
+    const obj = {};
+    expect(isEmptyObject(obj)).toEqual(true);
+  });
+
+  it('isEmptyMap', () => {
+    const mapValue = new Map();
+    expect(isEmptyMap(mapValue)).toEqual(true);
+  });
+  it('isEmptySet', () => {
+    const setValue = new Set();
+    expect(isEmptySet(setValue)).toEqual(true);
+  });
+  it('isClass', () => {
+    expect(isClass(HTMLMockElement)).toEqual(true);
+  });
+  it('isWeakMap', () => {
+    const weakMapValue = new WeakMap();
+    expect(isWeakMap(weakMapValue)).toEqual(true);
+  });
+  it('isWeakRef', () => {
+    const weakRefValue = new WeakRef({});
+    expect(isWeakRef(weakRefValue)).toEqual(true);
+  });
+  it('isWeakSet', () => {
+    const weakSetValue = new WeakSet();
+    expect(isWeakSet(weakSetValue)).toEqual(true);
+  });
+  it('isError', () => {
+    const errorValue = new Error('message');
+    expect(isError(errorValue)).toEqual(true);
+  });
+  it('isPositiveNumber', () => {
+    const num = 1.111;
+    expect(isPositiveNumber(num)).toEqual(true);
   });
 });
