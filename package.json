@@ -49,7 +49,7 @@
     "typedoc-plugin-markdown": "^4.7.0",
     "typescript": "^5.8.3",
     "vitepress": "^1.6.3",
-    "vitepress-theme-mild": "^0.8.4",
+    "vitepress-theme-mild": "^0.8.5",
     "vitest": "^3.2.4"
   },
   "simple-git-hooks": {

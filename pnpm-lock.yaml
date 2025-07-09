@@ -54,8 +54,8 @@ importers:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3)
       vitepress-theme-mild:
-        specifier: ^0.8.4
-        version: 0.8.4(@nuxt/kit@3.17.6(magicast@0.3.5))(@vue/devtools-api@7.7.7)(magicast@0.3.5)(markdown-it@14.1.0)(typescript@5.8.3)(vite@7.0.0(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vitepress@1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3))
+        specifier: ^0.8.5
+        version: 0.8.5(@nuxt/kit@3.17.6(magicast@0.3.5))(@vue/devtools-api@7.7.7)(magicast@0.3.5)(markdown-it@14.1.0)(typescript@5.8.3)(vite@7.0.0(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vitepress@1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3))
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@vitest/ui@3.2.4)(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0)
@@ -3710,8 +3710,8 @@ packages:
       vitepress: ^1.0.0-rc.27
       vue: ^3.3.8
 
-  vitepress-theme-mild@0.8.4:
-    resolution: {integrity: sha512-/AMaxqgVnZCMOgSPQmp3Dli68trWcLBc3nM9gNn3PJ7BqNbHTvZRZpvCguvO3IHCsua7vTDX/t5DnlJWaoA2cQ==}
+  vitepress-theme-mild@0.8.5:
+    resolution: {integrity: sha512-GQu6T/t8am0ZQ0elquCpUMxSXG1BXKSv4hvPxtVQDAyCKX4Txafbp79LthhWf5ByrGcE5qxoIrKOWs5bWHMGQw==}
 
   vitepress@1.6.3:
     resolution: {integrity: sha512-fCkfdOk8yRZT8GD9BFqusW3+GggWYZ/rYncOfmgcDtP3ualNHCAg+Robxp2/6xfH1WwPHtGpPwv7mbA3qomtBw==}
@@ -7891,7 +7891,7 @@ snapshots:
       vitepress: 1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3)
       vue: 3.5.17(typescript@5.8.3)
 
-  vitepress-theme-mild@0.8.4(@nuxt/kit@3.17.6(magicast@0.3.5))(@vue/devtools-api@7.7.7)(magicast@0.3.5)(markdown-it@14.1.0)(typescript@5.8.3)(vite@7.0.0(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vitepress@1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3)):
+  vitepress-theme-mild@0.8.5(@nuxt/kit@3.17.6(magicast@0.3.5))(@vue/devtools-api@7.7.7)(magicast@0.3.5)(markdown-it@14.1.0)(typescript@5.8.3)(vite@7.0.0(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vitepress@1.6.3(@algolia/client-search@5.30.0)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.6)(sass@1.89.2)(search-insights@2.17.3)(typescript@5.8.3)):
     dependencies:
       '@css-render/vue3-ssr': 0.15.14(vue@3.5.17(typescript@5.8.3))
       '@giscus/vue': 3.1.1(vue@3.5.17(typescript@5.8.3))

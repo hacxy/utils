@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from 'vitest';
-import { isArray, isBoolean, isDefined, isEmptyArray, isFinite, isFunction, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isString, isUndefined } from '../src/index.ts';
+import { isArray, isBoolean, isDate, isDefined, isEmptyArray, isFinite, isFunction, isHtmlElement, isMap, isNan, isNil, isNull, isNumber, isObject, isPlainObject, isSet, isString, isUndefined } from '../src/index.ts';
 
 describe('is', () => {
   it('isNumber', () => {
@@ -95,5 +95,21 @@ describe('is', () => {
     expect(isFinite(1000)).toEqual(true);
     expect(isFinite(Infinity)).toEqual(false);
     expect(isFinite(-Infinity)).toEqual(false);
+  });
+  it('isMap', () => {
+    const mapValue = new Map();
+    expect(isMap(mapValue)).toEqual(true);
+  });
+  it('isSet', () => {
+    const setValue = new Set();
+    expect(isSet(setValue)).toEqual(true);
+  });
+  it('isDate', () => {
+    const dateValue = new Date();
+    expect(isDate(dateValue)).toEqual(true);
+  });
+  it('isHtmlElement', () => {
+    expect(isHtmlElement('')).toEqual(false);
+    expect(isHtmlElement({})).toEqual(false);
   });
 });
