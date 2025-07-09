@@ -46,14 +46,17 @@ export type NonEmptyString = string & { 0: string };
  * Matches a [`class` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
  * @category 类型定义
  */
-type Constructor<T, Arguments extends unknown[] = any[]> = new (...arguments_: Arguments) => T;
+export type Constructor<T, Arguments extends unknown[] = any[]> = new (...arguments_: Arguments) => T;
 /**
  * Matches a [`class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
  * @category 类型定义
  */
 export type Class<T, Arguments extends unknown[] = any[]> = Constructor<T, Arguments> & { prototype: T };
 
-type ExtractFromGlobalConstructors<Name extends string>
+/**
+ * @category 类型定义
+ */
+export type ExtractFromGlobalConstructors<Name extends string>
   = Name extends string ? typeof globalThis extends Record<Name, new (...arguments_: any[]) => infer T> ? T : never : never;
 
 /**
