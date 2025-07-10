@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/hacxy/ts-utils/compare/v0.3.0...v0.4.0) (2025-07-10)
+
+### Features
+
+- add convertCase method ([54911a5](https://github.com/hacxy/ts-utils/commit/54911a51bcd409adf3f8af2911b887c02002e8f2))
+- add getTimestamp method ([86093fe](https://github.com/hacxy/ts-utils/commit/86093fe4a81eb3ad548b9c0616161db01a70d830))
+
 # [0.3.0](https://github.com/hacxy/ts-utils/compare/v0.2.0...v0.3.0) (2025-07-09)
 
 ### Features
