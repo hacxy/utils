@@ -1,9 +1,10 @@
-export * from './array-includes.ts';
-export * from './chinese.ts';
-export * from './clone.ts';
+export { arrayIncludes } from './array-includes.ts';
+export { hasChinese, isChinesePhoneNumber } from './chinese.ts';
+export { deepClone } from './clone.ts';
+export { type CaseFormat, convertCase } from './convert-case.ts';
 export { getTimestamp } from './get-timestamp.ts';
 export * from './is.ts';
-export * from './merge.ts';
+export { type DeepMergeOptions, mergeObject } from './merge.ts';
 export { objectHasOwn } from './object-has-own.ts';
 export { objectKeys } from './object-keys.ts';
 export { objectToSearchString } from './object-to-search-string.ts';
